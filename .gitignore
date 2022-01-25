@@ -1,0 +1,9 @@
+venv
+*.ipynb
+keys
+.ipynb_checkpoints
+__pycache__
+example.csv
+notebooks
+.env
+
