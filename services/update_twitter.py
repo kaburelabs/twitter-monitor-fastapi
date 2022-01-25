@@ -7,9 +7,7 @@ from datetime import datetime
 # import pymongo
 import motor.motor_asyncio
 from decouple import config
-
-# with open("services/access_json.json") as json_file:
-#     secrets = json.load(json_file)
+from config.settings import get_db_projects
 
 api_key = config("api_key")
 api_secret_key = config("api_secret_key")
@@ -21,18 +19,7 @@ auth = tweepy.OAuthHandler(api_key, api_secret_key)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-
-def mongo_connection(database, collection):
-
-    client = motor.motor_asyncio.AsyncIOMotorClient(config("DB_URL2"))
-
-    db = client[database]
-    coll = db[collection]
-
-    return coll
-
-
-conn_summary = mongo_connection("twitter2", "projects_card_data")
+conn = get_db_projects()
 
 
 async def update_summary_cards(acc_name, data):
@@ -42,7 +29,7 @@ async def update_summary_cards(acc_name, data):
     myquery = {"project_name": acc_name}
     newvalues = {"$set": project_data}
 
-    await conn_summary.update_one(myquery, newvalues)
+    await conn["projects_card_data"].update_one(myquery, newvalues)
 
     return project_data
 

@@ -52,7 +52,7 @@ class HistoricalData(BaseModel):
     date: datetime
     followers: int
     following: int
-    
+
 
 class OutputHistorical(BaseModel):
     project: str

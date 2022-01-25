@@ -14,11 +14,11 @@ def settings(expire_time=60 * 12):
 
 def get_db():
     client = motor.motor_asyncio.AsyncIOMotorClient(config("DB_URL"))
-    db = client[config("DATABASE_NAME")]
+    db = client[config("DATABASE_USER")]
     return db
 
 
 def get_db_projects():
     client = motor.motor_asyncio.AsyncIOMotorClient(config("DB_URL2"))
-    db = client["twitter2"]
+    db = client[config("DATABASE_PROJECTS")]
     return db

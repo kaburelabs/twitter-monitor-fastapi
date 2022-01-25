@@ -51,8 +51,6 @@ def create_date(entry):
     return new_copy
 
 
-
-
 @router.get(
     "/history/{project}", response_model=_schm.OutputHistorical, tags=["Projects"]
 )
@@ -70,7 +68,7 @@ async def get_project_history(project: str, request: Request):
 
     if projects:
 
-        return {"project":project, "history": projects}
+        return {"project": project, "history": projects}
 
     else:
         raise exception
