@@ -37,12 +37,16 @@ app.add_middleware(
 
 
 @app.on_event("startup")
-@repeat_every(seconds=60)
-async def update_projects() -> None:
-    app.dbusers = settings.get_db()
+async def setup_database() -> None:
+    app.dbusers = settings.get_db_users()
     app.dbprojs = settings.get_db_projects()
+
+
+@repeat_every(seconds=60)
+async def get_twitter_data() -> None:
     fulldate = datetime.utcnow().replace(second=0, microsecond=0)
     hour_minute = fulldate.strftime("%H:%M")
+    print("runned here")
 
     if hour_minute in [f"{str(hr).zfill(2)}:00" for hr in range(1, 23, 1)]:
 

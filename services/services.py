@@ -11,7 +11,7 @@ from schemas import schema as _schemas
 from services import update_twitter
 
 SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES = settings.settings()
-database = settings.get_db()
+database = settings.get_db_users()
 projects_db = settings.get_db_projects()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

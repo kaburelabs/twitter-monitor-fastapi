@@ -8,7 +8,7 @@ from services import services as _srvc
 
 router = APIRouter()
 
-database = settings.get_db()
+database = settings.get_db_users()
 
 
 @router.get("/me/", response_model=_schm.User, tags=["Users"])

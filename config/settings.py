@@ -12,7 +12,7 @@ def settings(expire_time=60 * 12):
     return SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
 
 
-def get_db():
+def get_db_users():
     client = motor.motor_asyncio.AsyncIOMotorClient(config("DB_URL"))
     db = client[config("DATABASE_USER")]
     return db
