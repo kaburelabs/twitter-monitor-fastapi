@@ -47,7 +47,7 @@ async def projects_list(projects_list, date):
             url = user.url
             created = user.created_at
 
-            conn_new = mongo_connection("twitter2", project)
+            conn_new = conn[project]
 
             entry_value = {
                 "_id": date,
@@ -57,7 +57,8 @@ async def projects_list(projects_list, date):
 
             await conn_new.insert_one(entry_value)
 
-            # cond1 = project=="spacebudzNFT"
+            conn_summary = conn["projects_card_data"]
+
             proj = conn_summary.find_one({"project_name": project})
 
             if await proj:
